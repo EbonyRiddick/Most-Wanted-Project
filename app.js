@@ -17,7 +17,6 @@ function app(people){
     case 'no':
       // TODO: search by traits searchResults = searchByEyeColor(people)
       searchType = promptFor("Do you want to search by 'gender', 'eye color', 'DOB', 'occupation', or 'ID'?", yesNo).toLowerCase();
-      searchResults = searchByEyeColor(people);
       break;
       default:
     app(people); // restart app
