@@ -81,9 +81,8 @@ function searchByName(people){
     }
   })
   // TODO: find the person single person object using the name they entered.
-    if(foundPerson.length === 1){
       return foundPerson[0]
-    }
+    
 }
 
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
