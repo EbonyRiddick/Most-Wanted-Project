@@ -15,7 +15,9 @@ function app(people){
       searchResults = searchByName(people);
       break;
     case 'no':
-      // TODO: search by traits
+      // TODO: search by traits searchResults = searchByEyeColor(people)
+      searchType = promptFor("Do you want to search by 'gender', 'eye color', 'DOB', 'occupation', or 'ID'?", yesNo).toLowerCase();
+      searchResults = searchByEyeColor(people)
       break;
       default:
     app(people); // restart app
@@ -84,7 +86,9 @@ function searchByName(people){
 
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
 function searchByEyeColor(people){
-
+  let eyeColor =
+  let black = 
+  let hazel =
 }
 
 //TODO: add other trait filter functions here.
