@@ -16,8 +16,21 @@ function app(people){
       break;
     case 'no':
       // TODO: search by traits searchResults = searchByEyeColor(people)
-      searchType = promptFor("Do you want to search by 'gender', 'eye color', 'DOB', 'occupation', or 'ID'?", yesNo).toLowerCase();
-      searchResults= searchByEyeColor(people);
+      searchType = promptFor("Do you want to search by 'gender', 'eye color', 'DOB', 'occupation', or 'ID'?", searchTypeValidation).toLowerCase();
+      switch(searchType){
+        case 'gender':
+          searchResults = searchByGender(people);
+          break;
+        case 'eye color':
+          searchResults = searchByEyeColor(people);
+          break;
+        case 'DOB':
+          break;
+        case 'occupation':
+          break;
+        case 'ID':
+          break;
+      }
       break;
       default:
     app(people); // restart app
@@ -87,16 +100,7 @@ function searchByName(people){
 
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
 function searchByEyeColor(people){
-  let color = prompt("What is the persons eye color 'Black', 'Blue', 'Brown', 'Green', or 'Hazel'?");
-  let foundEyes = people.filter(function(potentialMatch){
-    if(potentialMatch.eyeColor === color){
-      return true;
-    }
-    else{
-      return false;
-    }
-  })
-  return foundEyes[0]
+  let eyeColor = promptFor("What color are their eyes?" , eyeColorValidation);
 
   let foundPeople = people.filter(function(potentialMatch){
     if(potentialMatch.eyeColor === eyeColor){
@@ -106,9 +110,22 @@ function searchByEyeColor(people){
       return false;
     }
   })
-  return foundPeople
+  return foundPeople[2]
 }
 
+function searchByGender(people){
+  let gender = promptFor("What gender is the person your looking for?" , genderValidation);
+
+  let foundPeople = people.filter(function(potentialMatch){
+    if(potentialMatch.gender === gender){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  return foundPeople
+}
 //TODO: add other trait filter functions here.
 
 
@@ -177,6 +194,15 @@ function yesNoValidation(input){
   }
 }
 
+function genderValidation(input){
+  if(input.toLowerCase() == "male" || input.tolowerCase() == "female"){
+    return true;
+  }
+  else{
+    return false;
+  }
+}
+
 // helper function to pass in as default promptFor validation.
 //this will always return true for all inputs.
 function autoValid(input){
@@ -199,7 +225,7 @@ function searchTypeValidation(input){
     return true;
   }
   else{
-    return false;
+   return false;
   }
 }
 
