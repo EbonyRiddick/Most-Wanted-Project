@@ -149,10 +149,10 @@ function searchByOccupation(people){
 }
 
 function searchByHeight(people){
-  let height = promptFor("How tall is the person you are looking for? Please enter number for inches");
+  let height = prompt("How tall is the person you are looking for? Please enter number for inches");
 
   let foundPeople = people.filter(function(potentialMatch){
-    if(potentialMatch.height === parsInt(height)){
+    if(potentialMatch.height === parseInt(height)){
       return true;
     }
     else{
@@ -265,9 +265,14 @@ function searchTypeValidation(input){
   }
 }
 
-function idValidation(input){
-
-}
+// function heightValidation(input){
+//   if(input.tolowerCase() == parseInt("")){
+//     return true;
+//   }
+//   else{
+//     return false;
+//   }
+// }
 
 function occupationValidation(input){
   if(input.toLowerCase() == "programmer" || input.toLowerCase() == "assistant" || input.toLowerCase() == "landscaper" || input.toLowerCase() == "nurse" || input.toLowerCase() == "student" || input.toLowerCase() == "architect" || input.toLowerCase() == "doctor" || input.toLowerCase() == "politician"){
