@@ -16,7 +16,7 @@ function app(people){
       break;
     case 'no':
       // TODO: search by traits searchResults = searchByEyeColor(people)
-      searchType = promptFor("Do you want to search by 'gender', 'eye color', 'occupation', or 'Height'?", searchTypeValidation).toLowerCase();
+      searchType = promptFor("Do you want to search by 'gender', 'eye color', 'occupation','Height', or 'Weight?", searchTypeValidation).toLowerCase();
       switch(searchType){
         case 'gender':
           searchResults = searchByGender(people);
@@ -29,6 +29,9 @@ function app(people){
           break;
         case 'height':
           searchResults = searchByHeight(people);
+          break;
+        case 'weight':
+          searchResults = searchByWeight(people);
           break;
       }
       break;
@@ -106,6 +109,8 @@ function searchByName(people){
 }
 
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
+//TODO: add other trait filter functions here.
+
 function searchByEyeColor(people){
   let eyeColor = promptFor("What color are their eyes?" , eyeColorValidation);
 
@@ -162,7 +167,20 @@ function searchByHeight(people){
   return foundPeople;
 }
 
-//TODO: add other trait filter functions here.
+function searchByWeight(people){
+  let weight = prompt("How much does the person you are looking for weigh? Please enter number for lbs");
+
+  let foundPeople = people.filter(function(potentialMatch){
+    if(potentialMatch.weight === parseInt(weight)){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  return foundPeople;
+}
+
 
 
 
@@ -257,7 +275,7 @@ function eyeColorValidation(input){
 }
 
 function searchTypeValidation(input){
-  if(input.toLowerCase() == "height" || input.toLowerCase() == "gender" || input.toLowerCase() == "eye color" || input.toLowerCase() == "occupation"){
+  if(input.toLowerCase() == "height" || input.toLowerCase() == "gender" || input.toLowerCase() == "eye color" || input.toLowerCase() == "occupation" || input.toLowerCase() == "weight"){
     return true;
   }
   else{
