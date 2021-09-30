@@ -24,9 +24,8 @@ function app(people){
         case 'eye color':
           searchResults = searchByEyeColor(people);
           break;
-        case 'DOB':
-          break;
         case 'occupation':
+          searchResults = searchByOccupation(people);
           break;
         case 'ID':
           break;
@@ -110,7 +109,7 @@ function searchByEyeColor(people){
       return false;
     }
   })
-  return foundPeople[2]
+  return foundPeople[i]
 }
 
 function searchByGender(people){
@@ -118,6 +117,20 @@ function searchByGender(people){
 
   let foundPeople = people.filter(function(potentialMatch){
     if(potentialMatch.gender === gender){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  return foundPeople
+}
+
+function searchByOccupation(people){
+  let occupation = promptFor("What is the occupation of the person your looking for?" , occupationValidation);
+
+  let foundPeople = people.filter(function(potentialMatch){
+    if(potentialMatch.occupation === occupation){
       return true;
     }
     else{
@@ -229,5 +242,16 @@ function searchTypeValidation(input){
   }
 }
 
+function idValidation(input){
 
+}
+
+function occupationValidation(input){
+  if(input.toLowerCase() == "programmer" || input.toLowerCase() == "assistant" || input.toLowerCase() == "landscaper" || input.toLowerCase() == "nurse" || input.toLowerCase() == "student" || input.toLowerCase() == "architect" || input.toLowerCase() == "doctor" || input.toLowerCase() == "politician"){
+    return true;
+  }
+  else{
+    return false
+  }
+}
 //#endregion
