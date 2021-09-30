@@ -16,20 +16,8 @@ function app(people){
       break;
     case 'no':
       // TODO: search by traits searchResults = searchByEyeColor(people)
-      searchType = promptFor("Do you want to search by 'gender', 'eye color', 'DOB', 'occupation', or 'ID'?", searchTypeValidation).toLowerCase();
-      switch(searchType){
-        case 'gender':
-          break;
-        case 'eye color':
-          searchResults = searchByEyeColor(people);
-          break;
-        case 'DOB':
-          break;
-        case 'occupation':
-          break;
-        case 'ID':
-          break;
-      }
+      searchType = promptFor("Do you want to search by 'gender', 'eye color', 'DOB', 'occupation', or 'ID'?", yesNo).toLowerCase();
+      searchResults= searchByEyeColor(people);
       break;
       default:
     app(people); // restart app
@@ -99,7 +87,16 @@ function searchByName(people){
 
 //unfinished function to search through an array of people to find matching eye colors. Use searchByName as reference.
 function searchByEyeColor(people){
-  let eyeColor = promptFor("What color are their eyes?" , eyeColorValidation);
+  let color = prompt("What is the persons eye color 'Black', 'Blue', 'Brown', 'Green', or 'Hazel'?");
+  let foundEyes = people.filter(function(potentialMatch){
+    if(potentialMatch.eyeColor === color){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  return foundEyes[0]
 
   let foundPeople = people.filter(function(potentialMatch){
     if(potentialMatch.eyeColor === eyeColor){
