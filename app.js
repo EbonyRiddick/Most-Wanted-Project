@@ -152,7 +152,7 @@ function searchByHeight(people){
   let height = promptFor("How tall is the person you are looking for? Please enter number for inches");
 
   let foundPeople = people.filter(function(potentialMatch){
-    if(potentialMatch.height === height){
+    if(potentialMatch.height === parsInt(height)){
       return true;
     }
     else{
@@ -257,7 +257,7 @@ function eyeColorValidation(input){
 }
 
 function searchTypeValidation(input){
-  if(input.toLowerCase() == "id" || input.toLowerCase() == "gender" || input.toLowerCase() == "eye color" || input.toLowerCase() == "dob" || input.toLowerCase() == "occupation"){
+  if(input.toLowerCase() == "height" || input.toLowerCase() == "gender" || input.toLowerCase() == "eye color" || input.toLowerCase() == "occupation"){
     return true;
   }
   else{
