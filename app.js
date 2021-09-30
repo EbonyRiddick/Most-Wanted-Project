@@ -206,4 +206,5 @@ function searchTypeValidation(input){
   }
 }
 
+
 //#endregion
