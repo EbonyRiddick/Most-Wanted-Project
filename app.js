@@ -16,7 +16,7 @@ function app(people){
       break;
     case 'no':
       // TODO: search by traits searchResults = searchByEyeColor(people)
-      searchType = promptFor("Do you want to search by 'gender', 'eye color', 'DOB', 'occupation', or 'ID'?", searchTypeValidation).toLowerCase();
+      searchType = promptFor("Do you want to search by 'gender', 'eye color', 'occupation', or 'Height'?", searchTypeValidation).toLowerCase();
       switch(searchType){
         case 'gender':
           searchResults = searchByGender(people);
@@ -27,7 +27,8 @@ function app(people){
         case 'occupation':
           searchResults = searchByOccupation(people);
           break;
-        case 'ID':
+        case 'height':
+          searchResults = searchByHeight(people);
           break;
       }
       break;
@@ -115,7 +116,7 @@ function searchByEyeColor(people){
       return false;
     }
   })
-  return foundPeople
+  return foundPeople;
 }
 
 function searchByGender(people){
@@ -129,7 +130,7 @@ function searchByGender(people){
       return false;
     }
   })
-  return foundPeople
+  return foundPeople;
 }
 
 function searchByOccupation(people){
@@ -143,8 +144,23 @@ function searchByOccupation(people){
       return false;
     }
   })
-  return foundPeople
+  return foundPeople;
 }
+
+function searchByHeight(people){
+  let height = promptFor("How tall is the person you are looking for? Please enter number for inches");
+
+  let foundPeople = people.filter(function(potentialMatch){
+    if(potentialMatch.height === height){
+      return true;
+    }
+    else{
+      return false;
+    }
+  })
+  return foundPeople;
+}
+
 //TODO: add other trait filter functions here.
 
 
@@ -257,7 +273,7 @@ function occupationValidation(input){
     return true;
   }
   else{
-    return false
+    return false;
   }
 }
 //#endregion
