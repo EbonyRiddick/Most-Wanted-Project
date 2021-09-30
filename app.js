@@ -63,6 +63,7 @@ function mainMenu(person, people){
     break;
     case "family":
     // TODO: get person's family
+
     break;
     case "descendants":
     // TODO: get person's descendants
@@ -223,7 +224,7 @@ function genderValidation(input){
 
 // helper function to pass in as default promptFor validation.
 //this will always return true for all inputs.
-function autoValid(input){
+function autoValid(_input){
   return true; // default validation only
 }
 
