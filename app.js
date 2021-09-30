@@ -35,9 +35,14 @@ function app(people){
     app(people); // restart app
       break;
   }
-  
+  if(searchResults.length > 1){
+    displayPeople(searchResults);
+  }
+  else{
+    mainMenu(searchResults[0], people);
+  }
   // Call the mainMenu function ONLY after you find the SINGLE person you are looking for
-  mainMenu(searchResults, people);
+ 
 }
 
 // Menu function to call once you find who you are looking for
@@ -93,7 +98,7 @@ function searchByName(people){
     }
   })
   // TODO: find the person single person object using the name they entered.
-      return foundPerson[0]
+      return foundPerson
     
 }
 
@@ -109,7 +114,7 @@ function searchByEyeColor(people){
       return false;
     }
   })
-  return foundPeople[i]
+  return foundPeople
 }
 
 function searchByGender(people){
