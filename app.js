@@ -243,18 +243,29 @@ function displayFamily(person, people) {
     let parent = getMemberRecord(person.parents[i], people)
     parents.push(parent)
   }
-  // let rtvSpouse = getMemberRecord(person.currentSpouse)
   let personInfo = "Parents: \n";
   for (let i = 0; i < parents.length; i++) {
     personInfo += `${parents[i].firstName} ${parents[i].lastName} \n`
   }
+
   // TODO: get family members record 
   // let rtvSpouse = getMemberRecord(person.currentSpouse)
   // Loop  to display all members (spouse, parents, siblings)
-  personInfo += "Current Spouse: " + person.currentSpouse + "\n"
+  let spouse = []
+  for (let i = 0; i < person.spouse; i++) {
+    let currentSpouse = getMemberRecord(person.currentSpouse[i], people)
+    spouse.push(currentSpouse)
+  }
+
+  
+  personInfo += "Current Spouse: \n";
+    for (let i = 0; i < spouse.length; i++) {
+  personInfo += `${spouse[i].firstName} ${spouse[i].lastName} \n`
+  }
   // alert(rtvSpouse)
   alert(personInfo);
 }
+
 //#endregion
 
 //Validation functions.
