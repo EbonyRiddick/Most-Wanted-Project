@@ -227,7 +227,6 @@ function displayFamily(person) {
 //#endregion
 
 
-
 //Validation functions.
 //Functions to validate user input.
 /////////////////////////////////////////////////////////////////
