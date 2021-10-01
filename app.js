@@ -6,36 +6,40 @@
 /////////////////////////////////////////////////////////////////
 //#region 
 
-// app is the function called to start the entire application
+// * app is the function called to start the entire application
 function app(people) {
   let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNoValidation).toLowerCase();
   let attributeArray = ['gender', 'eye color', 'height', 'weight', 'occupation']
   let searchResults = people;
+  let contSearch = true;
   switch (searchType) {
     case 'yes':
       searchResults = searchByName(searchResults);
       break;
     case 'no':
       // TODO: search by traits searchResults = searchByEyeColor(people)
-      while(searchType === false){
-        app(attributeArray) }
-      searchType = promptFor("Do you want to search by 'gender', 'eye color', 'occupation','Height', or 'Weight?", searchTypeValidation).toLowerCase();
-      switch (searchType) {
-        case 'gender':
-          searchResults = searchByGender(searchResults);
-          break;
-        case 'eye color':
-          searchResults = searchByEyeColor(searchResults);
-          break;
-        case 'occupation':
-          searchResults = searchByOccupation(searchResults);
-          break;
-        case 'height':
-          searchResults = searchByHeight(searchResults);
-          break;
-        case 'weight':
-          searchResults = searchByWeight(searchResults);
-          break;
+      while (contSearch) {
+        searchType = promptFor("Do you want to search by 'gender', 'eye color', 'occupation','Height', or 'Weight? Type quit to retrieve results.", searchTypeValidation).toLowerCase();
+        switch (searchType) {
+          case 'gender':
+            searchResults = searchByGender(searchResults);
+            break;
+          case 'eye color':
+            searchResults = searchByEyeColor(searchResults);
+            break;
+          case 'occupation':
+            searchResults = searchByOccupation(searchResults);
+            break;
+          case 'height':
+            searchResults = searchByHeight(searchResults);
+            break;
+          case 'weight':
+            searchResults = searchByWeight(searchResults);
+            break;
+          default:
+            contSearch = !contSearch;
+            break;
+        }
       }
       break;
     default:
@@ -71,7 +75,7 @@ function mainMenu(person, people) {
       break;
     case "family":
       // TODO: get person's family
-      displayFamily(person)
+      displayFamily(person, people)
       break;
     case "descendants":
       // TODO: get person's descendants
@@ -185,6 +189,19 @@ function searchByWeight(people) {
 }
 
 
+function getMemberRecord(id) {
+  // access data 
+  let foundPeople = people.filter(function (potentialMatch) {
+    if (potentialMatch.id === id) {
+      return true;
+    }
+    else {
+      return false;
+    }
+  })
+  return foundPeople[0];
+  // return member data
+}
 
 
 //#endregion
@@ -219,13 +236,16 @@ function displayPerson(person) {
   alert(personInfo);
 }
 
-function displayFamily(person) {
-  let personInfo = "Parents: " + person.parents + "\n";
+function displayFamily(person, people) {
+  let parents = person.parents.forEach(getMemberRecord)
+  let personInfo = "Parents: " + parents + "\n";
+  // TODO: get family members record 
+  // let rtvSpouse = getMemberRecord(person.currentSpouse)
+  // Loop  to display all members (spouse, parents, siblings)
   personInfo += "Current Spouse: " + person.currentSpouse + "\n"
   alert(personInfo);
 }
 //#endregion
-
 
 //Validation functions.
 //Functions to validate user input.
@@ -282,7 +302,7 @@ function eyeColorValidation(input) {
 }
 
 function searchTypeValidation(input) {
-  if (input.toLowerCase() == "height" || input.toLowerCase() == "gender" || input.toLowerCase() == "eye color" || input.toLowerCase() == "occupation" || input.toLowerCase() == "weight") {
+  if (input.toLowerCase() == "height" || input.toLowerCase() == "gender" || input.toLowerCase() == "eye color" || input.toLowerCase() == "occupation" || input.toLowerCase() == "weight" || input.toLowerCase() == "quit") {
     return true;
   }
   else {
