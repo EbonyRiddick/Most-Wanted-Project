@@ -189,8 +189,9 @@ function searchByWeight(people) {
 }
 
 
-function getMemberRecord(id) {
+function getMemberRecord(id, people) {
   // access data 
+  // let memberData = "ID: " + person.id + "\n";
   let foundPeople = people.filter(function (potentialMatch) {
     if (potentialMatch.id === id) {
       return true;
@@ -202,7 +203,7 @@ function getMemberRecord(id) {
   return foundPeople[0];
   // return member data
 }
-
+// put displayPerson in getMemberRecord
 
 //#endregion
 
@@ -237,12 +238,21 @@ function displayPerson(person) {
 }
 
 function displayFamily(person, people) {
-  let parents = person.parents.forEach(getMemberRecord)
-  let personInfo = "Parents: " + parents + "\n";
+  let parents = []
+  for (let i = 0; i < person.parents.length; i++) {
+    let parent = getMemberRecord(person.parents[i], people)
+    parents.push(parent)
+  }
+  // let rtvSpouse = getMemberRecord(person.currentSpouse)
+  let personInfo = "Parents: \n";
+  for (let i = 0; i < parents.length; i++) {
+    personInfo += `${parents[i].firstName} ${parents[i].lastName} \n`
+  }
   // TODO: get family members record 
   // let rtvSpouse = getMemberRecord(person.currentSpouse)
   // Loop  to display all members (spouse, parents, siblings)
   personInfo += "Current Spouse: " + person.currentSpouse + "\n"
+  // alert(rtvSpouse)
   alert(personInfo);
 }
 //#endregion
