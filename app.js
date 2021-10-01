@@ -9,29 +9,30 @@
 // app is the function called to start the entire application
 function app(people){
   let searchType = promptFor("Do you know the name of the person you are looking for? Enter 'yes' or 'no'", yesNoValidation).toLowerCase();
-  let searchResults;
+  let attributeArray = ['gender' , 'eye color' , 'height' , 'weight', 'occupation']
+  let searchResults = people;
   switch(searchType){
     case 'yes':
-      searchResults = searchByName(people);
+      searchResults = searchByName(searchResults);
       break;
     case 'no':
       // TODO: search by traits searchResults = searchByEyeColor(people)
       searchType = promptFor("Do you want to search by 'gender', 'eye color', 'occupation','Height', or 'Weight?", searchTypeValidation).toLowerCase();
       switch(searchType){
         case 'gender':
-          searchResults = searchByGender(people);
+          searchResults = searchByGender(searchResults);
           break;
         case 'eye color':
-          searchResults = searchByEyeColor(people);
+          searchResults = searchByEyeColor(searchResults);
           break;
         case 'occupation':
-          searchResults = searchByOccupation(people);
+          searchResults = searchByOccupation(searchResults);
           break;
         case 'height':
-          searchResults = searchByHeight(people);
+          searchResults = searchByHeight(searchResults);
           break;
         case 'weight':
-          searchResults = searchByWeight(people);
+          searchResults = searchByWeight(searchResults);
           break;
       }
       break;
@@ -254,7 +255,7 @@ function yesNoValidation(input){
 }
 
 function genderValidation(input){
-  if(input.toLowerCase() == "male" || input.tolowerCase() == "female"){
+  if(input.toLowerCase() == "male" || input.toLowerCase() == "female"){
     return true;
   }
   else{
