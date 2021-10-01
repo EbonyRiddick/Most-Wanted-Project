@@ -17,6 +17,8 @@ function app(people) {
       break;
     case 'no':
       // TODO: search by traits searchResults = searchByEyeColor(people)
+      while(searchType === false){
+        app(attributeArray) }
       searchType = promptFor("Do you want to search by 'gender', 'eye color', 'occupation','Height', or 'Weight?", searchTypeValidation).toLowerCase();
       switch (searchType) {
         case 'gender':
